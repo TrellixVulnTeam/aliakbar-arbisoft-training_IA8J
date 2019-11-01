@@ -1,0 +1,24 @@
+{% if user.is_authenticated %}
+
+    <font size="6">{{ book.title }}</font>
+
+    <div align="right">
+        <form action="{% url 'books:edit' book.id %}" method="post">
+            {% csrf_token %}
+            <input name="book_id" type="hidden" value="{{ book.id }}">
+            <input type="submit" value="edit">
+        </form>
+
+    </div>
+
+    <br>
+
+    <p>by {{ book.author }}</p>
+
+    <p>{{ book.description }}</p>
+
+{% else %}
+
+    <p>Please Login <a href="{% url 'userauth:index' %}">here</a> first</p>
+
+{% endif %}

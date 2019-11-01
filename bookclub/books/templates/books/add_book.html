@@ -1,0 +1,5 @@
+<form action="{% url 'books:add_book' %}" method="POST">
+    {% csrf_token %}
+    {{ add_book_form.as_p }}
+    <input type="submit" value="Submit">
+</form>

@@ -1,0 +1,13 @@
+<p>Welcome to the Book Club!</p>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<p>Please Login from Here!</p>
+<form action="{% url 'userauth:index' %}" method="post">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    <input type="submit" value="Login"> <br/>
+</form>
+<br/>
+
+<p>New here? Create a free account <a href="{% url 'userauth:signup' %}">now</a></p>
+

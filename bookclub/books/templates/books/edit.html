@@ -1,0 +1,18 @@
+{% if error_message  %}
+
+    <p> {{ error_message }} <a href="{% url 'userauth:logout_user' %}">Logout?</a> </p>
+
+{% else %}
+
+    <font size="6">{{ book.title }}</font>
+    <form action="{% url 'books:update' book.id %}" method="POST">
+        {% csrf_token %}
+        <p>Title: <input name="title" type="text" value="{{ book.title }}" required="yes"></p>
+        <p>Author: <input name="author" type="text" value="{{ book.author }}" required="yes"></p>
+        <p>Description: <input name="description" type="text" value="{{ book.description }}" required="yes"></p>
+
+        <input type="submit" value="Submit">
+    </form>
+
+
+{% endif %}

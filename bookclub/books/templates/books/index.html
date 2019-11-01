@@ -1,0 +1,32 @@
+<p>Welcome to the Book Club!</p>
+
+{% if user.is_authenticated %}
+
+
+    <p>Welcome {{ user.username }} !</p>
+
+    <a class="btn btn-primary" href="{% url 'userauth:logout_user' %}">Logout?</a>
+
+    <div align="right"> <a href="{% url 'books:add_book' %}">Add Book</a></div>
+
+    <div align="right"> <a href="{% url 'books:add_bulk' %}">Add Bulk of Books</a></div>
+
+    {% if latest_book_list %}
+    <ul>
+        {% for book in latest_book_list %}
+        <li><a href="{% url 'books:detail' book.id %}">{{ book.title }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No books are available.</p>
+
+    {% endif %}
+
+{% else %}
+
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <p>Please Login <a href="{% url 'userauth:index' %}">here</a> first</p>
+
+{% endif %}

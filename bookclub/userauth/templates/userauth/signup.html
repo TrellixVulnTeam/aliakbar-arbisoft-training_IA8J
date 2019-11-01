@@ -1,0 +1,11 @@
+<p>Welcome to the Book Club!</p>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<p>Please Signup from Here!</p>
+
+<form action="{% url 'userauth:signup' %}" method="post">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <input type="submit" value="Sign Up"> <br/>
+</form>

@@ -1,0 +1,13 @@
+{% if error_message %}
+
+    <p>{{ error_message }}</p>
+
+{% else %}
+
+<form action="{% url 'books:add_bulk' %}" method="POST">
+    {% csrf_token %}
+    <textarea name="json_bulk_data" placeholder="Enter JSON format here..."></textarea>
+    <input type="submit" value="Submit">
+</form>
+
+{% endif %}
